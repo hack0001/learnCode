@@ -1,0 +1,16 @@
+{
+  "name": "questions",
+  "version": "1.0.0",
+  "description": "Questions for Learning Languages and Packages",
+  "main": "index.js",
+  "scripts": {
+    "test-client": "node ./node_modules/karma/bin/karma start --single-run",
+    "test-server": "NODE_ENV=test ./node_modules/.bin/mocha --reporter nyan --recursive ./test/server/",
+    "test": "npm run test-client && npm run test-server",
+    "start": "gulp serve",
+    "start-prod": "NODE_ENV=production node ./dist/server/app.js"
+  },
+
+  "author": "",
+  "license": "ISC"
+}
