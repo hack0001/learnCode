@@ -1,23 +1,26 @@
-describe('about', function () {
+describe('main', function () {
   'use strict';
 
-  var $rootScope, $state;
+  var $rootScope, $scope, $httpBackend;
 
   beforeEach(module('app'));
-  beforeEach(module('app/about/about.html'));
+  beforeEach(module('app/main/main.html'));
 
-  beforeEach(inject(function (_$rootScope_, _$state_) {
+  beforeEach(inject(function (_$rootScope_, _$httpBackend_, $controller) {
+    $httpBackend = _$httpBackend_;
     $rootScope = _$rootScope_;
-    $state = _$state_;
+
+    $httpBackend.expectGET('/api/fruit').respond(['Banana', 'Kiwi', 'Clementine', 'Plum']);
+
+    $scope = $rootScope.$new();
+    $controller('MainCtrl', {$scope: $scope});
+    $scope.$digest();
   }));
 
-  describe('about tests', function () {
-    it('should test routes', function () {
-      $state.go('about');
-      $state.transition.then(function () {
-        expect($state.current.name).to.equal('about');
-      });
-      $rootScope.$digest();
+  describe('main tests', function () {
+    it('should have a list of fruit', function () {
+      $httpBackend.flush();
+      expect($scope.fruit.length).to.equal(4);
     });
   });
 });

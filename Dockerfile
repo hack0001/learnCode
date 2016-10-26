@@ -9,12 +9,14 @@ ADD . /home/app
 
 # Install dependencies
 RUN \
-    npm install -g bower && \
+    npm install -g bower gulp && \
     npm install && \
     bower install --config.interactive=false --allow-root
+    gulp dist
 
 # Tell Docker we are going to use this port
-EXPOSE 9000
+EXPOSE 8080
 
 # The command to run our app when the container is run
-CMD ["node", "server/app.js"]
+# CMD ["node", "server/app.js"]
+CMD ["npm","run", "start-prod"]

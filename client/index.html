@@ -10,29 +10,42 @@
 
     <title>Docker, AngularJS, Tutum</title>
 
-    <!-- deps -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+    <!-- inject:vendor:css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endinject -->
 
-    <!-- app -->
+    <!-- inject:css -->
     <link rel="stylesheet" href="app/app.css">
+    <link rel="stylesheet" href="app/main/main.css">
+    <!-- endinject -->
   </head>
 
   <body ng-app="app">
-
-    <!-- where ui-router load the views -->
+    <p>
+      Working
+    </p>
     <div ui-view></div>
 
-    <!-- deps -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <!-- inject:vendor:js -->
+    <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+    <!-- endbower -->
+    <!-- endinject -->
 
-    <!-- app -->
+    <!-- inject:js -->
     <script src="app/app.js"></script>
-    <script src="app/main/main.js"></script>
-    <script src="app/main/main-controller.js"></script>
     <script src="app/about/about.js"></script>
+    <script src="app/main/main-controller.js"></script>
+    <script src="app/main/main.js"></script>
+    <script src="components/input-focus/input-focus.js"></script>
+    <!-- endinject -->
+
   </body>
 </html>
