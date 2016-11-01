@@ -19,6 +19,7 @@ module.exports = function (config) {
   // Populate DB with sample data
   if (config.seedDB) {
     require('./seed');
+    require('./Qseed');
   }
 
   return db;

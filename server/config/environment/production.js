@@ -15,7 +15,7 @@ module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://' + MONGO_ADDR + ':' + MONGO_PORT + '/docker-angular-tutum'
+    uri: 'mongodb://' + MONGO_ADDR + ':' + MONGO_PORT + '/data'
   },
 
   // In production our secret will be defined in a environment variable on the server

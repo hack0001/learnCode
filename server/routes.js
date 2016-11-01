@@ -10,6 +10,7 @@ var errors = require('./components/errors');
 module.exports = function (app) {
 
   app.use('/api/fruit', require('./api/fruit'));
+  app.use('/api/questions', require('./api/questions'));
 
   // All undefined asset routes should return a 404
   app.route('/:url(components|app|bower_components)/*')

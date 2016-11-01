@@ -1,39 +1,32 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
+ <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container main">
-  <h1>Fruit</h1>
+  <h1>Subject:
 
-  <form class="form-inline form-add" ng-submit="add()">
-    <input ng-model="newItem.name" name="name" placeholder="Enter fruit name" class="form-control" required ng-disabled="saving">
-    <button class="btn btn-default" ng-disabled="saving" ng-bind="saving ? 'Saving...' : 'Add'"></button>
-  </form>
+  <div class="col-xs-3 pull-right">
+    <select class="form-control">
+      <option ng-repeat="i in fruit | unique:'subject'">{{i.subject}}</option>
+    </select>
+  </div>
 
-  <p>Double click the name of the fruit to edit</p>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>name</th>
-            <th>delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="fruit in fruit">
-            <td>{{$index}}</td>
-            <td ng-dblclick="startEdit(fruit); isEditing = !isEditing;" class="td-name">
-              <span ng-hide="isEditing">{{fruit.name}}</span>
-              <form ng-submit="update(fruit, 'submit'); isEditing = false" ng-show="isEditing" class="form-inline">
-                <input ng-model="fruit.name" ng-blur="update(fruit, 'blur'); isEditing = false" input-focus="isEditing" class="form-control input-sm" required>
-              </form>
-            </td>
-            <td>
-              <a href class="btn btn-xs btn-danger" ng-click="remove(fruit._id)">&times;</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+</h1>
+  <p>Double Click on Questions to edit them</p>
+
+  <div ng-repeat="question in fruit">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div ng-dblclick="startEdit(question); isEditing = !isEditing;" class="td-name">
+          <h4><span ng-hide="isEditing">{{$index+1}}. {{question.question}}</span></h4>
+          <form ng-submit="update(question, 'submit'); isEditing = false" ng-show="isEditing" class="form">
+            <input ng-model="question.question" ng-blur="update(question, 'blur'); isEditing = false" input-focus="isEditing" class="form-control input-sm" required>
+          </form>
+        </div>
+        <div class="btn-toolbar">
+          <a href class="btn btn-sm btn-danger pull-right" ng-click="remove(question._id)">&times;</a>
+          <a href class="btn btn-sm btn-success pull-right" ng-click="expand = !expand">Answer</a>
+        </div>
+          <p class="slide" ng-show="expand">{{question.answer}}</p>
+        </div>
+      </div>
     </div>
   </div>
-</div>

@@ -9,53 +9,53 @@
 'use strict';
 
 var _ = require('lodash');
-var Fruit = require('./fruit-model');
+var Question = require('./question-model');
 
-// Get list of fruits
+// Get list of questions
 exports.index = function (req, res) {
-  Fruit.find(function (err, fruits) {//fruits becomes the return object from the callback
+  Question.find(function (err, questions) {
     if(err) { return handleError(res, err); }
-    return res.status(200).json(fruits);
+    return res.status(200).json(questions);
   });
 };
 
 // Get a single fruit by id
 exports.show = function (req, res) {
-  Fruit.findById(req.params.id, function (err, fruit) {
+  Question.findById(req.params.id, function (err, questions) {
     if (err) { return handleError(res, err); }
-    if (!fruit) { return res.sendStatus(404); }
-    return res.json(fruit);
+    if (!questions) { return res.sendStatus(404); }
+    return res.json(questions);
   });
 };
 
 // Creates a new fruit
 exports.create = function (req, res) {
-  Fruit.create(req.body, function(err, fruit) {
+  Question.create(req.body, function(err, questions) {
     if (err) { return handleError(res, err); }
-    return res.status(201).json(fruit);
+    return res.status(201).json(questions);
   });
 };
 
 // Updates an existing fruit
 exports.update = function (req, res) {
   if (req.body._id) { delete req.body._id; }
-  Fruit.findById(req.params.id, function (err, fruit) {
+  Question.findById(req.params.id, function (err, questions) {
     if (err) { return handleError(res, err); }
-    if (!fruit) { return res.sendStatus(404); }
-    var updated = _.merge(fruit, req.body);
+    if (!questions) { return res.sendStatus(404); }
+    var updated = _.merge(questions, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.status(200).json(fruit);
+      return res.status(200).json(questions);
     });
   });
 };
 
 // Deletes a fruit
 exports.destroy = function (req, res) {
-  Fruit.findById(req.params.id, function (err, fruit) {
+  Question.findById(req.params.id, function (err, questions) {
     if (err) { return handleError(res, err); }
-    if (!fruit) { return res.sendStatus(404); }
-    fruit.remove(function (err) {
+    if (!questions) { return res.sendStatus(404); }
+    questions.remove(function (err) {
       if (err) { return handleError(res, err); }
       return res.sendStatus(204);
     });

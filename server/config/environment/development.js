@@ -9,7 +9,7 @@ module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://' + MONGO_ADDR + ':' + MONGO_PORT + '/docker-angular-tutum-dev'
+    uri: 'mongodb://' + MONGO_ADDR + ':' + MONGO_PORT + '/data'
   },
 
   // If true, sample data will be feed into the database, removing all previous one

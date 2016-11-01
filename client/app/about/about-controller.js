@@ -1,30 +1,28 @@
 angular.module('app')
-  .controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
+  .controller('AboutCtrl', ['$scope', '$http', function ($scope, $http) {
 
     $scope.fruit = [];
     $scope.newItem = {};
-
 
     function getFruit() {
       $http.get('/api/questions')
         .success(function (fruit) {
           $scope.fruit = fruit;
-          console.log(fruit);
+
         })
         .error(handleError);
     }
 
-
     function handleError() {
       console.log('there was an error accessing the api');
     }
-
 
     $scope.add = function () {
 
       $scope.saving = true;
 
       if (!$scope.newItem.subject) {
+        console.log($scope.newItem.subject);
         return;
       }
       if (!$scope.newItem.question) {
@@ -43,7 +41,8 @@ angular.module('app')
         .error(function () {
           handleError();
           $scope.saving = false;
-      });
+        });
+
     };
 
     $scope.remove = function (id) {
@@ -63,7 +62,7 @@ angular.module('app')
       if (!fruit.subject) {
         fruit.subject = $scope.currentEdit.subject;
       }
-      //submit also triggers blur, prevent double saving
+      // submit also triggers blur, prevent double saving
       if (event === 'blur' && $scope.saveEvent === 'submit') {
         $scope.saveEvent = null;
         return;
