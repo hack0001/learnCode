@@ -36,4 +36,20 @@ angular.module('app', [
         });
         return output;
      };
-  });
+  })
+
+ // .filter('startFrom',function(){
+ //   return function(data,start){ //start is what we give the function data is the dataset using
+ //     return data.slice(start);
+ //  }
+ // })
+
+ .filter('startFrom', function() {
+     return function(input, start) {
+         if(input) {
+             start = +start; //parse to int
+             return input.slice(start);
+         }
+         return [];
+     }
+ });

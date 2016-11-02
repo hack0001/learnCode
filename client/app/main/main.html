@@ -4,19 +4,19 @@
   <h1>Subject:
 
   <div class="col-xs-3 pull-right">
-    <select class="form-control">
-      <option ng-repeat="i in fruit | unique:'subject'">{{i.subject}}</option>
+    <select class="form-control" name="show-filter" ng-model="selectFilter" ng-options="category as category.subject for category in fruit | unique:'subject'">
+      <!-- <option ng-repeat="i in fruit | unique:'subject'">{{i.subject}}</option> -->
     </select>
   </div>
 
 </h1>
   <p>Double Click on Questions to edit them</p>
 
-  <div ng-repeat="question in fruit">
+  <div ng-repeat="question in filtered | startFrom:(currentPage -1) * pageSize | limitTo: pageSize | filter : {subject: selectFilter.subject}: true">
     <div class="panel panel-default">
       <div class="panel-body">
         <div ng-dblclick="startEdit(question); isEditing = !isEditing;" class="td-name">
-          <h4><span ng-hide="isEditing">{{$index+1}}. {{question.question}}</span></h4>
+          <h4><span ng-hide="isEditing">{{ ($index + 1) + (currentPage - 1) * pageSize}}. {{question.question}}</span></h4>
           <form ng-submit="update(question, 'submit'); isEditing = false" ng-show="isEditing" class="form">
             <input ng-model="question.question" ng-blur="update(question, 'blur'); isEditing = false" input-focus="isEditing" class="form-control input-sm" required>
           </form>
@@ -29,4 +29,7 @@
         </div>
       </div>
     </div>
-  </div>
+   <pagination class="pagination-small" data-boundary-links="true" data-num-pages="noOfPages" data-current-page="currentPage"
+   data-previous-text="&laquo;" data-next-text="&raquo;" max-size="pageSize"
+   total-items="filtered.length" ng-model="currentPage" items-per-page="pageSize"></pagination>
+ </div>

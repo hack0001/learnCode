@@ -1,8 +1,27 @@
 angular.module('app')
-  .controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
+  .controller('MainCtrl', ['$scope', '$http','filterFilter',function ($scope, $http, filterFilter) {
 
     $scope.fruit = [];
     $scope.newItem = {};
+    $scope.pageSize = 5;    //rows per page
+    $scope.currentPage = 1; //current page
+
+    /* init pagination with $scope.list */
+    $scope.noOfPages = Math.ceil($scope.fruit.length/$scope.pageSize);
+
+    $scope.$watch('selectFilter', function(term) {
+        // Create $scope.filtered and then calculat $scope.noOfPages, no racing!
+        $scope.filtered = filterFilter($scope.fruit, {subject:term.subject});
+        $scope.noOfPages = Math.ceil($scope.filtered.length/$scope.pageSize);
+        console.log($scope.filtered);
+
+        // for (var i = 1; i <= $scope.filtered.length; i++) {
+        //   $scope.filtered.push(i);
+        // }
+        console.log($scope.filtered);
+        $scope.currentPage=1;
+
+    });
 
 
     function getFruit() {
