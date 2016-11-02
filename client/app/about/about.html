@@ -4,23 +4,12 @@
 <div class="container main">
   <h1>Add/Edit Questions and Answers</h1>
 
-
-
-
-
-
-
   <form class="form form-add" ng-submit="add()">
-
     <div class="col-xs-3 pull-right">
       <select class="form-control" ng-model="newItem.subject">
         <option ng-repeat="i in fruit | unique:'subject'"  name="subject" required ng-disabled="saving">{{i.subject}}</option>
       </select>
     </div>
-
-
-
-
 
     <!-- <input ng-model="newItem.subject" name="subject" placeholder="Enter subject name" class="form-control" required ng-disabled="saving"> -->
     <input ng-model="newItem.question" name="question" placeholder="Enter Question" class="form-control" required ng-disabled="saving">
@@ -30,6 +19,6 @@
 
   <div class="form-group">
     <label for="comment">Answer:</label>
-    <textarea ng-model="newItem.answer" name"answer" class="form-control" rows="20" required ng-disabled="saving" id="comment" placeholder="Enter Answer Here..."></textarea>
+    <textarea ng-model="newItem.answer" name="answer" class="form-control" rows="20" required ng-disabled="saving" id="comment" placeholder="Enter Answer Here..."></textarea>
   </div>
   </div>
