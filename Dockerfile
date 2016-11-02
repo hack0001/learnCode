@@ -11,7 +11,7 @@ ADD . /home/app
 RUN \
     npm install -g bower gulp && \
     npm install && \
-    bower install --config.interactive=false --allow-root
+    bower install --config.interactive=false --allow-root && \
     gulp dist
 
 # Tell Docker we are going to use this port
