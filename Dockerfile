@@ -8,12 +8,12 @@ WORKDIR /home/app
 ADD . /home/app
 
 # Install dependencies
-RUN npm update -g npm
 RUN \
     npm install -g bower gulp && \
     npm install && \
-    bower install --config.interactive=false --allow-root && \
-    gulp dist
+    bower install --config.interactive=false --allow-root 
+
+RUN gulp dist
 
 # Tell Docker we are going to use this port
 EXPOSE 8080
