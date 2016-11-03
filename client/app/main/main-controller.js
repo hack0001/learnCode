@@ -3,7 +3,7 @@ angular.module('app')
 
     $scope.fruit = [];
     $scope.newItem = {};
-    $scope.pageSize = 5;    //rows per page
+    $scope.pageSize = 20;    //rows per page
     $scope.currentPage = 1; //current page
 
     /* init pagination with $scope.list */
@@ -13,14 +13,7 @@ angular.module('app')
         // Create $scope.filtered and then calculat $scope.noOfPages, no racing!
         $scope.filtered = filterFilter($scope.fruit, {subject:term.subject});
         $scope.noOfPages = Math.ceil($scope.filtered.length/$scope.pageSize);
-        console.log($scope.filtered);
-
-        // for (var i = 1; i <= $scope.filtered.length; i++) {
-        //   $scope.filtered.push(i);
-        // }
-        console.log($scope.filtered);
         $scope.currentPage=1;
-
     });
 
 
@@ -67,9 +60,11 @@ angular.module('app')
 
     $scope.remove = function (id) {
       var index = this.$index;
+      console.log(index);
+      console.log(this);
       $http.delete('/api/questions/' + id)
         .success(function () {
-          $scope.fruit.splice(index, 1);
+          $scope.filtered.splice(index, 1);
         })
         .error(handleError);
     };
@@ -78,9 +73,9 @@ angular.module('app')
       $scope.currentEdit = angular.copy(fruit);
     };
 
-    $scope.update = function (fruit, event, name) {
-      if (!fruit.subject) {
-        fruit.subject = $scope.currentEdit.subject;
+    $scope.update = function (filtered, event, name) {
+      if (!filtered.subject) {
+        filtered.subject = $scope.currentEdit.subject;
       }
       //submit also triggers blur, prevent double saving
       if (event === 'blur' && $scope.saveEvent === 'submit') {
@@ -91,7 +86,7 @@ angular.module('app')
       $scope.saveEvent = event;
       $scope.currentEdit = null;
 
-      $http.put('/api/questions/' + fruit._id, fruit).error(handleError);
+      $http.put('/api/questions/' + filtered._id, filtered).error(handleError);
     };
 
     // Get initial data from api
