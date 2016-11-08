@@ -1,4 +1,4 @@
-.main .form-add {
+/*.main .form-add {
   margin-bottom: 20px;
 }
 
@@ -13,4 +13,10 @@
 .main .td-name {
   height: 50px;
   width: 400px;
+}*/
+
+.main textarea{
+  min-width:100%;
+
+
 }

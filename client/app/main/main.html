@@ -25,7 +25,7 @@
           <a href class="btn btn-sm btn-danger pull-right" ng-click="remove(question._id)">&times;</a>
           <a href class="btn btn-sm btn-success pull-right" ng-click="expand = !expand">Answer</a>
         </div>
-          <p class="slide" ng-show="expand">{{question.answer}}</p>
+          <textarea class="slide" rows="20" style="border-style:none;" ng-show="expand">{{question.answer}}</textarea>
         </div>
       </div>
     </div>

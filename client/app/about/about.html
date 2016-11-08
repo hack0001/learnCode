@@ -10,11 +10,12 @@
     </select>
     <br />
     <input ng-model="newItem.question" name="question" placeholder="Enter Question" class="form-control" required ng-disabled="saving">
-  </form>
 
+    <br>
   <div class="form-group">
     <label for="comment">Answer:</label>
     <textarea ng-model="newItem.answer" name="answer" class="form-control" rows="20" required ng-disabled="saving" id="comment" placeholder="Enter Answer Here..."></textarea>
   </div>
       <button class="btn btn-lg btn-default pull-right" ng-disabled="saving" ng-bind="saving ? 'Saving...' : 'Add'"></button>
   </div>
+  </form>
