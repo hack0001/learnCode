@@ -13,6 +13,7 @@ var Question = require('./question-model');
 
 // Get list of questions
 exports.index = function (req, res) {
+  //Here is the database operation
   Question.find(function (err, questions) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(questions);
